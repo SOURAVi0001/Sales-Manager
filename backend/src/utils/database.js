@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: join(__dirname, '../../.env') });
 dotenv.config({ path: join(__dirname, '../../backend/.env') });
 
-const databaseUrl = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_2SB9QewPyHdM@ep-noisy-pond-a464rud5-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require';
+const databaseUrl = process.env.DATABASE_URL
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',

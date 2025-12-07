@@ -8,9 +8,8 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <div className="sidebar-header-title">
-          <div>Vault</div>
-          <div className="sidebar-header-subtitle">Anurag Yadav</div>
+        <div className="user-profile">
+          <div className="user-name">Anurag Yadav</div>
         </div>
         <div className="sidebar-dropdown">▼</div>
       </div>
@@ -20,35 +19,39 @@ const Sidebar = () => {
         <div className="nav-item">Intake</div>
         <div className="nav-section">
           <div className="nav-section-header" onClick={() => setServicesExpanded(!servicesExpanded)}>
-            Services {servicesExpanded ? '▼' : '▶'}
+            Services <span className="arrow">{servicesExpanded ? '▼' : '▶'}</span>
           </div>
           {servicesExpanded && (
             <div className="nav-section-items">
-              <div className="nav-radio">
-                <input type="radio" name="services" id="pre-active" />
-                <label htmlFor="pre-active">Pre-active</label>
-              </div>
-              <div className="nav-radio">
-                <input type="radio" name="services" id="active" />
-                <label htmlFor="active">Active</label>
-              </div>
-              <div className="nav-radio">
-                <input type="radio" name="services" id="blocked" />
-                <label htmlFor="blocked">Blocked</label>
-              </div>
-              <div className="nav-radio">
-                <input type="radio" name="services" id="closed" defaultChecked />
-                <label htmlFor="closed">Closed</label>
-              </div>
+              <label className="nav-radio">
+                <input type="radio" name="services" value="pre-active" />
+                <span className="radio-custom"></span>
+                <span className="radio-label">Pre-active</span>
+              </label>
+              <label className="nav-radio">
+                <input type="radio" name="services" value="active" />
+                <span className="radio-custom"></span>
+                <span className="radio-label">Active</span>
+              </label>
+              <label className="nav-radio">
+                <input type="radio" name="services" value="blocked" />
+                <span className="radio-custom"></span>
+                <span className="radio-label">Blocked</span>
+              </label>
+              <label className="nav-radio">
+                <input type="radio" name="services" value="closed" defaultChecked />
+                <span className="radio-custom"></span>
+                <span className="radio-label">Closed</span>
+              </label>
             </div>
           )}
         </div>
         <div className="nav-section">
           <div className="nav-section-header" onClick={() => setInvoicesExpanded(!invoicesExpanded)}>
-            Invoices {invoicesExpanded ? '▼' : '▶'}
+            Invoices <span className="arrow">{invoicesExpanded ? '▼' : '▶'}</span>
           </div>
           {invoicesExpanded && (
-            <div className="nav-section-items">
+            <div className="nav-section-items no-padding">
               <div className="nav-item selected">Proforma Invoices</div>
               <div className="nav-item">Final Invoices</div>
             </div>
