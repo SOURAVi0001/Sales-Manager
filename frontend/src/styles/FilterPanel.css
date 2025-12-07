@@ -26,7 +26,7 @@
 
 .filter-btn {
   padding: 8px 16px;
-  background-color: #f5f5f5; /* Light background */
+  background-color: #f5f5f5;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   color: #333;
@@ -38,11 +38,10 @@
   gap: 6px;
 }
 
-/* Add an arrow to mimic screenshot dropdowns */
 .filter-btn::after {
-    content: "▼";
-    font-size: 8px;
-    color: #888;
+  content: "▼";
+  font-size: 8px;
+  color: #888;
 }
 
 .filter-btn:hover {
@@ -64,13 +63,130 @@
 }
 
 .filter-checkbox {
-    color: #333;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  color: #333;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 4px;
 }
+
 .filter-checkbox:hover {
-    background-color: #f5f5f5;
-    border-radius: 4px;
+  background-color: #f5f5f5;
+}
+
+.filter-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.filter-range input {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.filter-range input:focus {
+  border-color: #1a1a1a;
+}
+
+.filter-range span {
+  color: #666;
+  font-size: 13px;
+}
+
+.filter-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #1a1a1a;
+  cursor: pointer;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .filter-panel {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .filter-menu {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-icon-btn {
+    align-self: flex-end;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+  }
+
+  .filter-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-menu {
+    position: static;
+    width: 100%;
+    margin-top: 4px;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  .filter-range {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 0;
+  }
+
+  .filter-range input {
+    width: 100%;
+  }
+
+  .filter-range span {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-panel {
+    gap: 6px;
+  }
+
+  .filter-btn,
+  .filter-icon-btn {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .filter-menu {
+    padding: 6px;
+  }
+
+  .filter-checkbox {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .filter-range input {
+    font-size: 12px;
+    padding: 6px;
+  }
 }

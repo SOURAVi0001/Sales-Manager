@@ -3,23 +3,30 @@
 }
 
 .sort-select {
-  padding: 8px 16px;
+  padding: 8px 32px 8px 16px; /* Added right padding for arrow */
   background-color: #ffffff;
-  border: 2px solid #FFD700; /* Yellow/Gold border from screenshot */
+  border: 1px solid #e0e0e0; /* Changed to match other inputs */
   border-radius: 6px;
-  color: #1a1a1a;
+  color: #333;
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
   outline: none;
   min-width: 200px;
-  appearance: none; /* Hides default arrow */
+  appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 16px;
+  transition: all 0.2s;
 }
 
 .sort-select:hover {
-  background-color: #fffbf0;
+  background-color: #f9f9f9;
+  border-color: #ccc;
+}
+
+.sort-select:focus {
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
 }

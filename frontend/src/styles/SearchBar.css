@@ -6,6 +6,13 @@
   border-radius: 6px;
   padding: 8px 12px;
   min-width: 240px;
+  transition: all 0.2s;
+}
+
+.search-bar:focus-within {
+  background-color: #ffffff;
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
 }
 
 .search-input {

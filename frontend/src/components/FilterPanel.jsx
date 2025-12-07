@@ -1,26 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/FilterPanel.css';
 
 const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
   const [openFilter, setOpenFilter] = useState(null);
+  const panelRef = useRef(null);
 
   const toggleFilter = (filterName) => {
-    setOpenFilter(openFilter === filterName ? null : filterName);
+    setOpenFilter((prev) => (prev === filterName ? null : filterName));
   };
+
+  // Close dropdown when clicking outside the panel
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target)) {
+        setOpenFilter(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleMultiSelect = (filterType, value) => {
     const currentValues = filters[filterType] || [];
     const newValues = currentValues.includes(value)
-      ? currentValues.filter(v => v !== value)
+      ? currentValues.filter((v) => v !== value)
       : [...currentValues, value];
+
     onFilterChange(filterType, newValues);
+    // If you want dropdown to close after selecting an option, uncomment:
+    // setOpenFilter(null);
   };
 
   const handleAgeRange = (type, value) => {
     const currentRange = filters.ageRange || {};
     onFilterChange('ageRange', {
       ...currentRange,
-      [type]: value ? parseInt(value) : null
+      [type]: value ? parseInt(value, 10) : null,
     });
   };
 
@@ -28,22 +44,27 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
     const currentRange = filters.dateRange || {};
     onFilterChange('dateRange', {
       ...currentRange,
-      [type]: value || null
+      [type]: value || null,
     });
   };
 
   return (
-    <div className="filter-panel">
-      <button onClick={onRefresh} title="Refresh">
+    <div className="filter-panel" ref={panelRef}>
+      <button className="filter-icon-btn" onClick={onRefresh} title="Refresh">
         Refresh
       </button>
+
+      {/* Customer Region */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('customerRegion')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('customerRegion')}
+        >
           Customer Region
         </button>
         {openFilter === 'customerRegion' && (
           <div className="filter-menu">
-            {['North', 'South', 'East', 'West'].map(region => (
+            {['North', 'South', 'East', 'West'].map((region) => (
               <label key={region} className="filter-checkbox">
                 <input
                   type="checkbox"
@@ -56,13 +77,18 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
           </div>
         )}
       </div>
+
+      {/* Gender */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('gender')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('gender')}
+        >
           Gender
         </button>
         {openFilter === 'gender' && (
           <div className="filter-menu">
-            {['Male', 'Female', 'Other'].map(gender => (
+            {['Male', 'Female', 'Other'].map((gender) => (
               <label key={gender} className="filter-checkbox">
                 <input
                   type="checkbox"
@@ -75,8 +101,13 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
           </div>
         )}
       </div>
+
+      {/* Age Range */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('ageRange')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('ageRange')}
+        >
           Age Range
         </button>
         {openFilter === 'ageRange' && (
@@ -99,13 +130,18 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
           </div>
         )}
       </div>
+
+      {/* Product Category */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('productCategory')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('productCategory')}
+        >
           Product Category
         </button>
         {openFilter === 'productCategory' && (
           <div className="filter-menu">
-            {['Clothing', 'Beauty', 'Electronics', 'Food'].map(cat => (
+            {['Clothing', 'Beauty', 'Electronics', 'Food'].map((cat) => (
               <label key={cat} className="filter-checkbox">
                 <input
                   type="checkbox"
@@ -118,13 +154,18 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
           </div>
         )}
       </div>
+
+      {/* Tags */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('tags')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('tags')}
+        >
           Tags
         </button>
         {openFilter === 'tags' && (
           <div className="filter-menu">
-            {['organic', 'skincare', 'premium'].map(tag => (
+            {['organic', 'skincare', 'premium'].map((tag) => (
               <label key={tag} className="filter-checkbox">
                 <input
                   type="checkbox"
@@ -137,13 +178,18 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
           </div>
         )}
       </div>
+
+      {/* Payment Method */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('paymentMethod')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('paymentMethod')}
+        >
           Payment Method
         </button>
         {openFilter === 'paymentMethod' && (
           <div className="filter-menu">
-            {['UPI', 'Cash', 'Card', 'Net Banking'].map(method => (
+            {['UPI', 'Cash', 'Card', 'Net Banking'].map((method) => (
               <label key={method} className="filter-checkbox">
                 <input
                   type="checkbox"
@@ -156,8 +202,13 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
           </div>
         )}
       </div>
+
+      {/* Date Range */}
       <div className="filter-dropdown">
-        <button className="filter-btn" onClick={() => toggleFilter('date')}>
+        <button
+          className="filter-btn"
+          onClick={() => toggleFilter('date')}
+        >
           Date
         </button>
         {openFilter === 'date' && (
