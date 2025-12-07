@@ -47,12 +47,7 @@ const SalesTable = ({ sales, loading }) => {
               <td>{formatDate(sale.Date || sale.date)}</td>
               <td>{sale['Customer ID'] || sale.customerId || sale.Customer_ID || ''}</td>
               <td>{sale['Customer Name'] || sale.customerName || sale.Customer_Name || ''}</td>
-              <td>
-                <span className="phone-number">
-                  {sale['Phone Number'] || sale.phoneNumber || sale.Phone_Number || ''}
-                  <span className="phone-icon">🔗</span>
-                </span>
-              </td>
+              <td>{sale['Phone Number'] || sale.phoneNumber || sale.Phone_Number || ''}</td>
               <td>{sale.Gender || sale.gender || ''}</td>
               <td>{sale.Age || sale.age || ''}</td>
               <td>{sale['Product Category'] || sale.productCategory || sale.Product_Category || ''}</td>
