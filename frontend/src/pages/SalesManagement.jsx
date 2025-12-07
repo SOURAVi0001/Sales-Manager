@@ -71,9 +71,11 @@ const SalesManagement = () => {
       <Sidebar />
       <div className="main-content">
         <div className="content-header">
-          <h1 className="page-title">Sales Management System</h1>
-          <div className="header-controls">
+          <div className="header-top-row">
+            <h1 className="page-title">Sales Management System</h1>
             <SearchBar value={search} onChange={handleSearchChange} />
+          </div>
+          <div className="header-bottom-row">
             <FilterPanel
               filters={filters}
               onFilterChange={handleFilterChange}
@@ -84,11 +86,6 @@ const SalesManagement = () => {
         </div>
         <StatsCards stats={stats} />
         {error && <div className="error-message">Error: {error}</div>}
-        {lastFetchTime && (
-          <div className="fetch-time-info">
-            Loaded in {lastFetchTime}ms • Showing {sales.length} of {pagination.totalCount} results
-          </div>
-        )}
         <SalesTable sales={sales} loading={loading} />
         <Pagination
           currentPage={pagination.currentPage}
