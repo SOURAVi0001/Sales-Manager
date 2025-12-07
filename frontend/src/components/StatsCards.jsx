@@ -19,7 +19,7 @@ const StatsCards = ({ stats }) => {
         </div>
       </div>
       <div className="stat-card">
-        <div className="stat-label">Total Discount</div>
+        <div>Total Discount</div>
         <div className="stat-value">
           {formatCurrency(stats.totalDiscount || 0)}
         </div>

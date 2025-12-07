@@ -34,7 +34,7 @@ const FilterPanel = ({ filters, onFilterChange, onRefresh }) => {
 
   return (
     <div className="filter-panel">
-      <button className="filter-icon-btn" onClick={onRefresh} title="Refresh">
+      <button onClick={onRefresh} title="Refresh">
         Refresh
       </button>
       <div className="filter-dropdown">
